@@ -26,17 +26,12 @@ class PetService {
         }]).toArray();
         return result
     }
-    async insertPet() {
+    async insertPet(pet) {
         const count = await this.counter();
         const collection = this.dataBase.collection('pet')
-        const result = collection.insertOne({
-            id_pet: count.seq_value,
-            name: "Pancha",
-            id_specie: 13,
-        })
+        pet.id_pet = count.seq_value;
+        const result = collection.insertOne(pet)
         return result;
-
-
     }
     async counter() {
         const collection = this.dataBase.collection('counters');

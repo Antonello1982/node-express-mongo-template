@@ -18,7 +18,9 @@ const petAPI = (app) => {
     })
 
     route.post('/insertPet', async (req, res) => {
-        const result = await petService.insertPet();
+        console.log(req.body);
+        const pet = req.body;
+        const result = await petService.insertPet(pet);
         res.send(result)
     })
 
